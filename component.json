@@ -1,0 +1,9 @@
+{
+  "name": "tableau",
+  "repo": "jwerle/tableau",
+  "description": "Construct rows and columns from an alphabet with which one can encrypt/decrypt information from",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [ "index.js" ]
+}
