@@ -59,7 +59,18 @@ w | x | y | z | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | 
 x | y | z | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w
 y | z | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x
 z | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y
-``` 
+```
+
+## api
+
+`table(alpha[,algo])`
+
+* `alpha` - Alphabet array of characters to construct a table with
+* `algo(x, y, l)` - Function for determining the character in `alpha` for each
+  cell in column and row where: `x` is current column in row, `y` is
+current row, and `l` is row length. The default is `return (x + y) % l;`
+which builds a (Vigenère Cipher
+tableau)[http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher].
 
 ## license
 

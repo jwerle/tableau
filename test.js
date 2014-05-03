@@ -1,9 +1,26 @@
 
 var tableau = require('./')
   , assert = require('assert')
+  , fmt = require('util').format
 
 var mat = null;
+var alpha = null;
 
+function printf () {
+  process.stdout.write(fmt.apply(null, arguments));
+}
+
+function draw (m) {
+  for (var y = 0; y < m.length; ++y) {
+    for (var x = 0; x < m[y].length; ++x) {
+      printf("%s | ", m[y][x]);
+    }
+    printf("\n");
+  }
+  printf("\n");
+}
+
+alpha = 'abcdefgijklmnopqrstuvwxyz'.split('');
 mat = tableau(['a', 'b', 'c']);
 
 assert(3 === mat.length);
@@ -23,3 +40,10 @@ assert('c' == mat[2][0]);
 assert('a' == mat[2][1]);
 assert('b' == mat[2][2]);
 
+mat = tableau(alpha);
+printf("Vigenère:\n");
+draw(mat);
+
+mat = tableau(alpha, function (x, y, l) { return ((l - x) + y) % l; });
+printf("Beaufort:\n");
+draw(mat);
