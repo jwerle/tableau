@@ -61,6 +61,49 @@ y | z | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | 
 z | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y
 ```
 
+A command line utility is also available. It can be used as such:
+
+```sh
+$ tableau
+a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z |
+b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z | a |
+
+...
+
+```
+
+You can set the algorithm with the `--algo=expr` option:
+
+```sh
+$ tableau --algo='((l - x) + y) % l'
+a | z | y | x | w | v | u | t | s | r | q | p | o | n | m | l | k | j | i | h | g | f | e | d | c | b |
+b | a | z | y | x | w | v | u | t | s | r | q | p | o | n | m | l | k | j | i | h | g | f | e | d | c |
+
+...
+
+```
+
+You can format the output with the `--format=format` option:
+
+```sh
+$ tableau --format='[ %s ]'
+[ a ][ b ][ c ][ d ][ e ][ f ][ g ][ h ][ i ][ j ][ k ][ l ][ m ][ n ][ o ][ p ][ q ][ r ][ s ][ t ][ u ][ v ][ w ][ x ][ y ][ z ]
+[ b ][ c ][ d ][ e ][ f ][ g ][ h ][ i ][ j ][ k ][ l ][ m ][ n ][ o ][ p ][ q ][ r ][ s ][ t ][ u ][ v ][ w ][ x ][ y ][ z ][ a ]
+
+...
+
+```
+
+The alphabet can be overrided with `--alpha=alpha` option:
+
+
+```sh
+$ tableau --alpha=123
+1 | 2 | 3 |
+2 | 3 | 1 |
+3 | 1 | 2 |
+```
+
 ## api
 
 `table(alpha[,algo])`
@@ -69,8 +112,7 @@ z | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | 
 * `algo(x, y, l)` - Function for determining the character in `alpha` for each
   cell in column and row where: `x` is current column in row, `y` is
 current row, and `l` is row length. The default is `return (x + y) % l;`
-which builds a [Vigenère Cipher
-tableau](http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher).
+which builds a [Vigenère Cipher tableau](http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher).
 
 ## license
 

@@ -1,0 +1,61 @@
+#!/usr/bin/env node
+
+var tableau = require('../')
+  , fmt = require('util').format
+
+var algo = null;
+var alpha = null;
+var format = null;
+
+var exit = process.exit;
+var argv = process.argv; argv.shift();
+var argc = argv.length;
+
+function printf () {
+  process.stdout.write(fmt.apply(null, arguments));
+}
+
+function draw (m) {
+  for (var y = 0; y < m.length; ++y) {
+    for (var x = 0; x < m[y].length; ++x) {
+      printf(format, m[y][x]);
+    }
+    printf("\n");
+  }
+  printf("\n");
+}
+
+function usage () {
+  printf("usage: tableau [-h] [--algo=expr] [--alpha='a-z'] [--format='%s | ']\n");
+}
+
+for (var i = 1; i < argc; ++i) {
+  if ("--alpha=" == argv[i].substr(0, 8)) {
+    alpha = argv[i].substr(8);
+  } else if ("--algo=" == argv[i].substr(0, 7)) {
+    algo = argv[i].substr(7);
+  } else if ("--format=" == argv[i].substr(0, 9)) {
+    format = argv[i].substr(9);
+  } else if ("-h" == argv[i]) {
+    usage();
+    exit(0);
+  } else {
+    console.error("Unknown option: `%s'", argv[i]);
+    usage();
+    exit(1);
+  }
+}
+
+if (null == format) {
+  format = "%s | ";
+}
+
+if (null == alpha) {
+  alpha = 'abcdefghijklmnopqrstuvwxyz'.split('');
+}
+
+if (algo) {
+  algo = Function('x', 'y', 'l', 'return '+ algo);
+}
+
+draw(tableau(alpha, algo));
