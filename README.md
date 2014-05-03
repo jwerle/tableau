@@ -69,8 +69,8 @@ z | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | 
 * `algo(x, y, l)` - Function for determining the character in `alpha` for each
   cell in column and row where: `x` is current column in row, `y` is
 current row, and `l` is row length. The default is `return (x + y) % l;`
-which builds a (Vigenère Cipher
-tableau)[http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher].
+which builds a [Vigenère Cipher
+tableau](http://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher).
 
 ## license
 
