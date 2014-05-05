@@ -17,9 +17,8 @@ function tableau (alpha, algo) {
     return (x + y) % l;
   };
 
-  for (var y = 0; y < l; ++y) {
-    m[y] = []; x = 0;
-    for (var x = 0; x < l; ++x) {
+  for (var m = [], y = 0, x = 0; y < l; ++y) {
+    for (x = 0, m[y] = []; x < l; ++x) {
       m[y][x] = alpha[algo(x, y, l)];
     }
   }
